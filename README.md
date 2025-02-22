@@ -4,6 +4,7 @@
 
 Implemented Kubernetes Monitoring and Alerting by using Prometheus.
 Installed Prometheus on kubernetes cluster by using Helm (kube-prometheus-stack).
+Created CRD for a service to monitor application.
 Along with prometheus we installed alertmanager for alerting.
 Integrated Slack with prometheus for alerting.
 
