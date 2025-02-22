@@ -1,0 +1,12 @@
+prometheus:
+  prometheusSpec:
+    podMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+
+alertmanager:
+
+  alertmanagerSpec:
+    alertmanagerConfigNamespaceSelector:
+    alertmanagerConfigSelector:
+    alertmanagerConfigMatcherStrategy:
+      type: None

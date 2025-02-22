@@ -1,0 +1,30 @@
+kind: PrometheusRule
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: node-app-rule
+  namespace: monitoring
+  labels:
+    release: kube-prometheus
+spec:
+  groups:
+    - name: "node-app-rule.rules"
+      rules:
+        - alert: PodDown
+          expr: sum(up{container="app-1"}) < 2
+          for: 1m
+          labels:
+            severity: warning
+            app: node-app
+          annotations:
+            message: "{{$labels.deployment}} has less than 2 replicas"
+
+    - name: "node-app-rule-2.rules"
+      rules:
+        - alert: Zero_Pods
+          expr: sum(up{container="app-1"}) < 1
+          for: 10s
+          labels:
+            severity: critical
+            app: node-app
+          annotations:
+            message: "{{$labels.deployment}} has less than 0 replicas"

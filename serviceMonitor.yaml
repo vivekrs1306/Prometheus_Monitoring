@@ -1,0 +1,16 @@
+kind: ServiceMonitor
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: node-app-svc-monitor
+  namespace: monitoring
+spec:
+  endpoints:
+    - path: metrics                              #Metrics Path
+      port: http-metrics                         #The port in the service exposing metrics
+      interval: 25s
+  namespaceSelector:                             # Defines in which ns it should scrape 
+    matchNames:
+      - dev-ns
+  selector:
+    matchLabels:
+      monitoring: enabled
